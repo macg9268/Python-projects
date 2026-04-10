@@ -51,7 +51,7 @@ async def metrics_middleware(request: Request, call_next):
         REQUEST_COUNT.labels(
             request.method,
             request.url.path,
-            str(status_code)  # 👈 ensure string
+            str(status_code)
         ).inc()
 
         REQUEST_LATENCY.labels(
@@ -76,7 +76,7 @@ async def home():
 
 @app.get("/slow")
 async def slow():
-    await asyncio.sleep(2)  # ✅ non-blocking
+    await asyncio.sleep(2)
     return {"message": "slow response"}
 
 @app.get("/error")
